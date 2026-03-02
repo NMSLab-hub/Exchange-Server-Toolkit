@@ -55,4 +55,5 @@ After execution:
 -   Transport Configuration
 -   Certificates
 -   DAG Information (if applicable)
-And more….
+And more….![Exchange_Config_FullReport](https://github.com/user-attachments/assets/5cb0f405-0d11-4536-b47c-5e222af249ba)
+
