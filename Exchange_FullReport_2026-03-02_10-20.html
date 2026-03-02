@@ -1,0 +1,336 @@
+﻿<html>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Exchange Server Health Check Report</title>
+<link href='https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&family=Consolas&display=swap' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 24px;
+    background: #F5F6F5;
+    color: #212121;
+    line-height: 1.6;
+    overflow: auto;
+}
+.container {
+    width: 90%;
+    max-width: 1400px;
+    min-width: 320px;
+    margin: auto;
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+}
+.h1 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #003087;
+    margin-bottom: 8px;
+}
+.subtitle {
+    color: #616161;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+.section {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.section-header {
+    background: #003087;
+    color: #FFFFFF;
+    padding: 12px 16px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s ease;
+}
+.section-header:hover {
+    background: #00215E;
+}
+.section-header.health-check {
+    border-left: 4px solid #2E7D32;
+    font-weight: 700;
+}
+.section-content {
+    padding: 16px;
+    background: #FFFFFF;
+    transition: all 0.3s ease;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 600px;
+}
+.table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.table th {
+    background: #005A9E;
+    color: #FFFFFF;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+}
+.table td {
+    padding: 12px;
+    border-bottom: 1px solid #B0BEC5;
+    vertical-align: top;
+}
+.prebox {
+    background: #F5F6F5;
+    color: #212121;
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+.badge-good {
+    background: #2E7D32;
+    color: #FFFFFF;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.badge-bad {
+    background: #D32F2F;
+    color: #FFFFFF;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.badge-warning {
+    background: #F57C00;
+    color: #FFFFFF;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.toggle-btn {
+    background: #005A9E;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s ease;
+}
+.toggle-btn:hover {
+    background: #003087;
+}
+.hidden {
+    display: none;
+}
+@keyframes slideDown {
+    from { max-height: 0; opacity: 0; }
+    to { max-height: 1000px; opacity: 1; }
+}
+.section-content.hidden {
+    animation: slideDown 0.3s ease forwards;
+}
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 16px;
+    }
+    .h1 {
+        font-size: 24px;
+    }
+    .section-header {
+        font-size: 16px;
+    }
+    .table {
+        font-size: 12px;
+    }
+}
+</style>
+<script>
+function toggle(id) {
+    var element = document.getElementById(id);
+    if (element) {
+        element.classList.toggle('hidden');
+    }
+}
+</script>
+</head>
+<body>
+<div class='container'>
+<h1 class='h1'>Exchange Server Configuration Detailed Report</h1>
+<p class='subtitle'>Org: MSMWP | Exchange: Version 15.2 (Build 1258.12) | Generated: 2026-03-02 10:21:02</p><div class='section'>
+    <div class='section-header health-check' onclick="toggle('health-check')">
+        <span>Exchange Health Check</span>
+        <span></span>
+    </div>
+    <div class='section-content' id='health-check'>
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Total Exchange Servers</td>
+                    <td>2</td>
+                    <td><span class='badge-good'>Operational</span></td>
+                </tr>
+                <tr>
+                    <td>Healthy Databases</td>
+                    <td>2/2</td>
+                    <td><span class='badge-good'>All Healthy</span></td>
+                </tr>
+                <tr>
+                    <td>Replication Issues</td>
+                    <td>0</td>
+                    <td><span class='badge-good'>No Issues</span></td>
+                </tr>
+                <tr>
+                    <td>Mail Queues with Issues</td>
+                    <td>0</td>
+                    <td><span class='badge-good'>No Issues</span></td>
+                </tr>
+                <tr>
+                    <td>Servers with Low Disk Space</td>
+                    <td>0</td>
+                    <td><span class='badge-good'>No Issues</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div><div class='section'>
+    <div class='section-header' onclick="toggle('mailbox-summary')">
+        <span>Mailbox Summary</span>
+        <span></span>
+    </div>
+    <div class='section-content' id='mailbox-summary'>
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th>Total Mailboxes</th>
+                    <th>Filtered Mailboxes</th>
+                    <th>Discovery Mailboxes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>6</td>
+                    <td>5</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style='font-size: 13px; margin-top: 8px;'>Note: Arbitration Mailboxes Count: 7</p>
+    </div>
+</div>    <div class='section'>
+        <div class='section-header' onclick="toggle('discovery-mailboxes')">
+            <span>Discovery System Mailboxes Details</span>
+            <span></span>
+        </div>
+        <div class='section-content' id='discovery-mailboxes'>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>DisplayName</th>
+                        <th>Type</th>
+                        <th>Primary SMTP</th>
+                        <th>Database</th>
+                        <th>Server</th>
+                    </tr>
+                </thead>
+                <tbody><tr>
+            <td>DiscoverySearchMailbox {D919BA05-46A6-415f-80AD-7E09334BB852}</td>
+            <td>Discovery Search Mailbox</td>
+            <td>DiscoveryMailbox</td>
+            <td>DiscoverySearchMailbox{D919BA05-46A6-415f-80AD-7E09334BB852}@msmwp.xyz</td>
+            <td>DB01</td>
+            <td>exc01</td>
+        </tr>                </tbody>
+            </table>
+        </div>
+    </div>    <div class='section'>
+        <div class='section-header' onclick="toggle('arbitration-mailboxes')">
+            <span>Arbitration Mailboxes Details</span>
+            <span></span>
+        </div>
+        <div class='section-content' id='arbitration-mailboxes'>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>DisplayName</th>
+                        <th>Type</th>
+                        <th>Primary SMTP</th>
+                        <th>Database</th>
+                        <th>Server</th>
+                    </tr>
+                </thead>
+                <tbody><tr>
+            <td>SystemMailbox{1f05a927-35e9-432b-a6d4-46695f366889}</td>
+            <td>Microsoft Exchange Approval Assistant</td>
+            <td>ArbitrationMailbox</td>
+            <td>SystemMailbox{1f05a927-35e9-432b-a6d4-46695f366889}@msmwp.xyz</td>
+            <td>DB01</td>
+            <td>exc01</td>
+        </tr><tr>
+            <td>SystemMailbox{bb558c35-97f1-4cb9-8ff7-d53741dc928c}</td>
+            <td>Microsoft Exchange</td>
+            <td>ArbitrationMailbox</td>
+            <td>SystemMailbox{bb558c35-97f1-4cb9-8ff7-d53741dc928c}@msmwp.xyz</td>
+            <td>DB01</td>
+            <td>exc01</td>
+        </tr><tr>
+            <td>SystemMailbox{e0dc1c29-89c3-4034-b678-e6c29d823ed9}</td>
+            <td>Microsoft Exchange</td>
+            <td>ArbitrationMailbox</td>
+            <td>SystemMailbox{e0dc1c29-89c3-4034-b678-e6c29d823ed9}@msmwp.xyz</td>
+            <td>DB01</td>
+            <td>exc01</td>
+        </tr><tr>
+            <td>Migration.8f3e7716-2011-43e4-96b1-aba62d229136</td>
+            <td>Microsoft Exchange Migration</td>
+            <td>ArbitrationMailbox</td>
+            <td>Migration.8f3e7716-2011-43e4-96b1-aba62d229136@msmwp.xyz</td>
+            <td>DB01</td>
+            <td>exc01</td>
+        </tr><tr>
+            <td>FederatedEmail.4c1f4d8b-8179-4148-93bf-00a95fa1e042</td>
+            <td>Microsoft Exchange Federation Mailbox</td>
+            <td>ArbitrationMailbox</td>
+            <td>FederatedEmail.4c1f4d8b-8179-4148-93bf-00a95fa1e042@msmwp.xyz</td>
+            <td>DB01</td>
+            <td>exc01</td>
+        </tr><tr>
+            <td>SystemMailbox{D0E409A0-AF9B-4720-92FE-AAC869B0D201}</td>
+            <td>E4E Encryption Store - Active</td>
+            <td>ArbitrationMailbox</td>
+            <td>SystemMailbox{D0E409A0-AF9B-4720-92FE-AAC869B0D201}@msmwp.xyz</td>
+            <td>DB01</td>
+            <td>exc01</td>
+        </tr><tr>
+            <td>SystemMailbox{2CE34405-31BE-455D-89D7-A7C7DA7A0DAA}</td>
+            <td>Microsoft Exchange</td>
+            <td>ArbitrationMailbox</td>
+            <td>SystemMailbox{2CE34405-31BE-455D-89D7-A7C7DA7A0DAA}@msmwp.xyz</td>
+            <td>DB01</td>
+            <td>exc01</td>
+        </tr>                </tbody>
+            </table>
+        </div>
+    </div><div class='section'><div class='section-header' onclick="toggle('send-connectors')"><span>Send Connectors</span><span></span></div><div class='section-content' id='send-connectors'><table class='table'><thead><tr><th>PSComputerName</th><th>RunspaceId</th><th>PSShowComputerName</th><th>DNSRoutingEnabled</th><th>TlsDomain</th><th>TlsAuthLevel</th><th>ErrorPolicies</th><th>SmartHosts</th><th>Port</th><th>ConnectionInactivityTimeOut</th><th>ForceHELO</th><th>FrontendProxyEnabled</th><th>IgnoreSTARTTLS</th><th>CloudServicesMailEnabled</th><th>Fqdn</th><th>TlsCertificateName</th><th>RequireTLS</th><th>RequireOorg</th><th>Enabled</th><th>ProtocolLoggingLevel</th><th>SmartHostAuthMechanism</th><th>AuthenticationCredential</th><th>UseExternalDNSServersEnabled</th><th>DomainSecureEnabled</th><th>SourceIPAddress</th><th>SmtpMaxMessagesPerConnection</th><th>ConnectorType</th><th>SmartHostsString</th><th>CertificateSubject</th><th>Region</th><th>AddressSpaces</th><th>ConnectedDomains</th><th>IsScopedConnector</th><th>IsSmtpConnector</th><th>Comment</th><th>SourceRoutingGroup</th><th>SourceTransportServers</th><th>HomeMTA</th><th>HomeMtaServerId</th><th>MaxMessageSize</th><th>AdminDisplayName</th><th>ExchangeVersion</th><th>Name</th><th>DistinguishedName</th><th>Identity</th><th>Guid</th><th>ObjectCategory</th><th>ObjectClass</th><th>WhenChanged</th><th>WhenCreated</th><th>WhenChangedUTC</th><th>WhenCreatedUTC</th><th>OrganizationId</th><th>Id</th><th>OriginatingServer</th><th>IsValid</th><th>ObjectState</th></tr></thead><tbody><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>True</td><td></td><td></td><td>Default</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmartHost]</td><td>25</td><td>00:10:00</td><td>False</td><td>False</td><td>False</td><td>False</td><td>mail.msmwp.xyz</td><td></td><td>False</td><td>False</td><td>True</td><td>None</td><td>None</td><td></td><td>False</td><td>False</td><td>0.0.0.0</td><td>20</td><td>Default</td><td></td><td></td><td>NotSpecified</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.AddressSpace]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.ConnectedDomain]</td><td>False</td><td>True</td><td></td><td>Exchange Routing Group (DWBGZMFD01QNBJR)</td><td>Microsoft.Exchange.Data.Directory.ADMultiValuedProperty`1[Microsoft.Exchange.Data.Directory.ADObjectId]</td><td>Microsoft MTA</td><td>EXC01</td><td>35 MB (36,700,160 bytes)</td><td></td><td>0.1 (8.0.535.0)</td><td>Internet</td><td>CN=Internet,CN=Connections,CN=Exchange Routing Group (DWBGZMFD01QNBJR),CN=Routing Groups,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>Internet</td><td>86848e89-8859-462d-bd54-c5dc211ddcb8</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Routing-SMTP-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/23/2026 2:55:06 PM</td><td>2/23/2026 2:39:24 PM</td><td>2/23/2026 8:55:06 AM</td><td>2/23/2026 8:39:24 AM</td><td></td><td>Internet</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr></tbody></table></div></div><div class='section'><div class='section-header' onclick="toggle('receive-connectors')"><span>Receive Connectors</span><span></span></div><div class='section-content' id='receive-connectors'><table class='table'><thead><tr><th>PSComputerName</th><th>RunspaceId</th><th>PSShowComputerName</th><th>AuthMechanism</th><th>Banner</th><th>BinaryMimeEnabled</th><th>Bindings</th><th>ChunkingEnabled</th><th>DefaultDomain</th><th>DeliveryStatusNotificationEnabled</th><th>EightBitMimeEnabled</th><th>SmtpUtf8Enabled</th><th>BareLinefeedRejectionEnabled</th><th>DomainSecureEnabled</th><th>EnhancedStatusCodesEnabled</th><th>LongAddressesEnabled</th><th>OrarEnabled</th><th>SuppressXAnonymousTls</th><th>ProxyEnabled</th><th>AdvertiseClientSettings</th><th>Fqdn</th><th>ServiceDiscoveryFqdn</th><th>TlsCertificateName</th><th>Comment</th><th>Enabled</th><th>ConnectionTimeout</th><th>ConnectionInactivityTimeout</th><th>MessageRateLimit</th><th>MessageRateSource</th><th>MaxInboundConnection</th><th>MaxInboundConnectionPerSource</th><th>MaxInboundConnectionPercentagePerSource</th><th>MaxHeaderSize</th><th>MaxHopCount</th><th>MaxLocalHopCount</th><th>MaxLogonFailures</th><th>MaxMessageSize</th><th>MaxProtocolErrors</th><th>MaxRecipientsPerMessage</th><th>PermissionGroups</th><th>PipeliningEnabled</th><th>ProtocolLoggingLevel</th><th>RemoteIPRanges</th><th>RequireEHLODomain</th><th>RequireTLS</th><th>EnableAuthGSSAPI</th><th>ExtendedProtectionPolicy</th><th>LiveCredentialEnabled</th><th>TlsDomainCapabilities</th><th>Server</th><th>TransportRole</th><th>RejectReservedTopLevelRecipientDomains</th><th>RejectReservedSecondLevelRecipientDomains</th><th>RejectSingleLabelRecipientDomains</th><th>AcceptConsumerMail</th><th>SizeEnabled</th><th>TarpitInterval</th><th>AuthTarpitInterval</th><th>MaxAcknowledgementDelay</th><th>AdminDisplayName</th><th>ExchangeVersion</th><th>Name</th><th>DistinguishedName</th><th>Identity</th><th>Guid</th><th>ObjectCategory</th><th>ObjectClass</th><th>WhenChanged</th><th>WhenCreated</th><th>WhenChangedUTC</th><th>WhenCreatedUTC</th><th>OrganizationId</th><th>Id</th><th>OriginatingServer</th><th>IsValid</th><th>ObjectState</th></tr></thead><tbody><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Tls, Integrated, BasicAuth, BasicAuthRequireTLS, ExchangeServer</td><td></td><td>True</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPBinding]</td><td>True</td><td></td><td>True</td><td>True</td><td>True</td><td>False</td><td>False</td><td>True</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Exc01.msmwp.xyz</td><td></td><td></td><td></td><td>True</td><td>00:10:00</td><td>00:05:00</td><td>Unlimited</td><td>IPAddress</td><td>5000</td><td>Unlimited</td><td>100</td><td>256 KB (262,144 bytes)</td><td>60</td><td>12</td><td>3</td><td>36 MB (37,748,736 bytes)</td><td>5</td><td>5000</td><td>ExchangeUsers, ExchangeServers, ExchangeLegacyServers</td><td>True</td><td>None</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPRange]</td><td>False</td><td>False</td><td>False</td><td>None</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmtpReceiveDomainCapabilities]</td><td>EXC01</td><td>HubTransport</td><td>False</td><td>False</td><td>False</td><td>False</td><td>EnabledWithoutValue</td><td>00:00:05</td><td>00:00:05</td><td>00:00:30</td><td></td><td>0.1 (8.0.535.0)</td><td>Default EXC01</td><td>CN=Default EXC01,CN=SMTP Receive Connectors,CN=Protocols,CN=EXC01,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>EXC01\Default EXC01</td><td>b0eaf22c-2cb6-4e23-bb93-0e7982041cb6</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Smtp-Receive-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 4:20:04 PM</td><td>2/21/2026 3:33:31 PM</td><td>2/21/2026 10:20:04 AM</td><td>2/21/2026 9:33:31 AM</td><td></td><td>EXC01\Default EXC01</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Tls, Integrated, BasicAuth, BasicAuthRequireTLS, ExchangeServer</td><td></td><td>True</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPBinding]</td><td>True</td><td></td><td>True</td><td>True</td><td>True</td><td>False</td><td>False</td><td>True</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Exc01.msmwp.xyz</td><td></td><td></td><td></td><td>True</td><td>00:10:00</td><td>00:05:00</td><td>5</td><td>User</td><td>5000</td><td>20</td><td>2</td><td>256 KB (262,144 bytes)</td><td>60</td><td>12</td><td>3</td><td>36 MB (37,748,736 bytes)</td><td>5</td><td>200</td><td>ExchangeUsers, ExchangeServers</td><td>True</td><td>None</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPRange]</td><td>False</td><td>False</td><td>True</td><td>None</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmtpReceiveDomainCapabilities]</td><td>EXC01</td><td>HubTransport</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Enabled</td><td>00:00:05</td><td>00:00:05</td><td>00:00:30</td><td></td><td>0.1 (8.0.535.0)</td><td>Client Proxy EXC01</td><td>CN=Client Proxy EXC01,CN=SMTP Receive Connectors,CN=Protocols,CN=EXC01,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>EXC01\Client Proxy EXC01</td><td>8cfe03db-264a-44d8-9f23-221e8e3a0467</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Smtp-Receive-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 3:33:32 PM</td><td>2/21/2026 3:33:32 PM</td><td>2/21/2026 9:33:32 AM</td><td>2/21/2026 9:33:32 AM</td><td></td><td>EXC01\Client Proxy EXC01</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Tls, Integrated, BasicAuth, BasicAuthRequireTLS, ExchangeServer</td><td></td><td>True</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPBinding]</td><td>True</td><td></td><td>True</td><td>True</td><td>True</td><td>False</td><td>True</td><td>True</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Exc01.msmwp.xyz</td><td></td><td></td><td></td><td>True</td><td>00:10:00</td><td>00:05:00</td><td>Unlimited</td><td>IPAddress</td><td>5000</td><td>20</td><td>2</td><td>256 KB (262,144 bytes)</td><td>60</td><td>12</td><td>3</td><td>36 MB (37,748,736 bytes)</td><td>5</td><td>200</td><td>AnonymousUsers, ExchangeServers, ExchangeLegacyServers</td><td>True</td><td>Verbose</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPRange]</td><td>False</td><td>False</td><td>False</td><td>None</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmtpReceiveDomainCapabilities]</td><td>EXC01</td><td>FrontendTransport</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Enabled</td><td>00:00:05</td><td>00:00:05</td><td>00:00:30</td><td></td><td>0.1 (8.0.535.0)</td><td>Default Frontend EXC01</td><td>CN=Default Frontend EXC01,CN=SMTP Receive Connectors,CN=Protocols,CN=EXC01,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>EXC01\Default Frontend EXC01</td><td>d991f115-d66b-431f-b615-19a0c0bcfb97</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Smtp-Receive-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 4:20:04 PM</td><td>2/21/2026 4:20:04 PM</td><td>2/21/2026 10:20:04 AM</td><td>2/21/2026 10:20:04 AM</td><td></td><td>EXC01\Default Frontend EXC01</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Tls, Integrated, BasicAuth, BasicAuthRequireTLS, ExchangeServer</td><td></td><td>True</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPBinding]</td><td>True</td><td></td><td>True</td><td>True</td><td>True</td><td>False</td><td>True</td><td>True</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Exc01.msmwp.xyz</td><td></td><td></td><td></td><td>True</td><td>00:10:00</td><td>00:05:00</td><td>Unlimited</td><td>IPAddress</td><td>5000</td><td>20</td><td>2</td><td>256 KB (262,144 bytes)</td><td>60</td><td>12</td><td>3</td><td>36 MB (37,748,736 bytes)</td><td>5</td><td>200</td><td>ExchangeServers</td><td>True</td><td>Verbose</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPRange]</td><td>False</td><td>False</td><td>False</td><td>None</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmtpReceiveDomainCapabilities]</td><td>EXC01</td><td>FrontendTransport</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Enabled</td><td>00:00:00</td><td>00:00:05</td><td>00:00:30</td><td></td><td>0.1 (8.0.535.0)</td><td>Outbound Proxy Frontend EXC01</td><td>CN=Outbound Proxy Frontend EXC01,CN=SMTP Receive Connectors,CN=Protocols,CN=EXC01,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>EXC01\Outbound Proxy Frontend EXC01</td><td>feb7cb38-7391-4db8-a079-9606c652ea3b</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Smtp-Receive-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 4:20:04 PM</td><td>2/21/2026 4:20:04 PM</td><td>2/21/2026 10:20:04 AM</td><td>2/21/2026 10:20:04 AM</td><td></td><td>EXC01\Outbound Proxy Frontend EXC01</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Tls, Integrated, BasicAuth, BasicAuthRequireTLS</td><td></td><td>True</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPBinding]</td><td>True</td><td></td><td>True</td><td>True</td><td>True</td><td>False</td><td>False</td><td>True</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Exc01.msmwp.xyz</td><td></td><td></td><td></td><td>True</td><td>00:10:00</td><td>00:05:00</td><td>5</td><td>User</td><td>5000</td><td>20</td><td>2</td><td>256 KB (262,144 bytes)</td><td>60</td><td>12</td><td>3</td><td>36 MB (37,748,736 bytes)</td><td>5</td><td>200</td><td>ExchangeUsers</td><td>True</td><td>None</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPRange]</td><td>False</td><td>False</td><td>True</td><td>None</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmtpReceiveDomainCapabilities]</td><td>EXC01</td><td>FrontendTransport</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Enabled</td><td>00:00:05</td><td>00:00:05</td><td>00:00:30</td><td></td><td>0.1 (8.0.535.0)</td><td>Client Frontend EXC01</td><td>CN=Client Frontend EXC01,CN=SMTP Receive Connectors,CN=Protocols,CN=EXC01,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>EXC01\Client Frontend EXC01</td><td>ec4ae9c9-5cc9-43cc-ae98-95554fe591b5</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Smtp-Receive-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 4:20:04 PM</td><td>2/21/2026 4:20:04 PM</td><td>2/21/2026 10:20:04 AM</td><td>2/21/2026 10:20:04 AM</td><td></td><td>EXC01\Client Frontend EXC01</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Tls, Integrated, BasicAuth, BasicAuthRequireTLS, ExchangeServer</td><td></td><td>True</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPBinding]</td><td>True</td><td></td><td>True</td><td>True</td><td>True</td><td>False</td><td>False</td><td>True</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>EXC02.msmwp.xyz</td><td></td><td></td><td></td><td>True</td><td>00:10:00</td><td>00:05:00</td><td>Unlimited</td><td>IPAddress</td><td>5000</td><td>Unlimited</td><td>100</td><td>256 KB (262,144 bytes)</td><td>60</td><td>12</td><td>3</td><td>36 MB (37,748,736 bytes)</td><td>5</td><td>5000</td><td>ExchangeUsers, ExchangeServers, ExchangeLegacyServers</td><td>True</td><td>None</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPRange]</td><td>False</td><td>False</td><td>False</td><td>None</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmtpReceiveDomainCapabilities]</td><td>EXC02</td><td>HubTransport</td><td>False</td><td>False</td><td>False</td><td>False</td><td>EnabledWithoutValue</td><td>00:00:05</td><td>00:00:05</td><td>00:00:30</td><td></td><td>0.1 (8.0.535.0)</td><td>Default EXC02</td><td>CN=Default EXC02,CN=SMTP Receive Connectors,CN=Protocols,CN=EXC02,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>EXC02\Default EXC02</td><td>fae6d63c-4acd-4d94-bd75-13b593f248a7</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Smtp-Receive-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/23/2026 1:06:05 PM</td><td>2/23/2026 1:02:16 PM</td><td>2/23/2026 7:06:05 AM</td><td>2/23/2026 7:02:16 AM</td><td></td><td>EXC02\Default EXC02</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Tls, Integrated, BasicAuth, BasicAuthRequireTLS, ExchangeServer</td><td></td><td>True</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPBinding]</td><td>True</td><td></td><td>True</td><td>True</td><td>True</td><td>False</td><td>False</td><td>True</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>EXC02.msmwp.xyz</td><td></td><td></td><td></td><td>True</td><td>00:10:00</td><td>00:05:00</td><td>5</td><td>User</td><td>5000</td><td>20</td><td>2</td><td>256 KB (262,144 bytes)</td><td>60</td><td>12</td><td>3</td><td>36 MB (37,748,736 bytes)</td><td>5</td><td>200</td><td>ExchangeUsers, ExchangeServers</td><td>True</td><td>None</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPRange]</td><td>False</td><td>False</td><td>True</td><td>None</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmtpReceiveDomainCapabilities]</td><td>EXC02</td><td>HubTransport</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Enabled</td><td>00:00:05</td><td>00:00:05</td><td>00:00:30</td><td></td><td>0.1 (8.0.535.0)</td><td>Client Proxy EXC02</td><td>CN=Client Proxy EXC02,CN=SMTP Receive Connectors,CN=Protocols,CN=EXC02,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>EXC02\Client Proxy EXC02</td><td>cad06ea8-0431-4e2f-b192-453d47869933</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Smtp-Receive-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/23/2026 1:02:16 PM</td><td>2/23/2026 1:02:16 PM</td><td>2/23/2026 7:02:16 AM</td><td>2/23/2026 7:02:16 AM</td><td></td><td>EXC02\Client Proxy EXC02</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Tls, Integrated, BasicAuth, BasicAuthRequireTLS, ExchangeServer</td><td></td><td>True</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPBinding]</td><td>True</td><td></td><td>True</td><td>True</td><td>True</td><td>False</td><td>True</td><td>True</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>EXC02.msmwp.xyz</td><td></td><td></td><td></td><td>True</td><td>00:10:00</td><td>00:05:00</td><td>Unlimited</td><td>IPAddress</td><td>5000</td><td>20</td><td>2</td><td>256 KB (262,144 bytes)</td><td>60</td><td>12</td><td>3</td><td>36 MB (37,748,736 bytes)</td><td>5</td><td>200</td><td>AnonymousUsers, ExchangeServers, ExchangeLegacyServers</td><td>True</td><td>Verbose</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPRange]</td><td>False</td><td>False</td><td>False</td><td>None</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmtpReceiveDomainCapabilities]</td><td>EXC02</td><td>FrontendTransport</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Enabled</td><td>00:00:05</td><td>00:00:05</td><td>00:00:30</td><td></td><td>0.1 (8.0.535.0)</td><td>Default Frontend EXC02</td><td>CN=Default Frontend EXC02,CN=SMTP Receive Connectors,CN=Protocols,CN=EXC02,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>EXC02\Default Frontend EXC02</td><td>22d83d05-92dc-43f4-bd52-04bf56cd5652</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Smtp-Receive-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/23/2026 1:06:06 PM</td><td>2/23/2026 1:06:05 PM</td><td>2/23/2026 7:06:06 AM</td><td>2/23/2026 7:06:05 AM</td><td></td><td>EXC02\Default Frontend EXC02</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Tls, Integrated, BasicAuth, BasicAuthRequireTLS, ExchangeServer</td><td></td><td>True</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPBinding]</td><td>True</td><td></td><td>True</td><td>True</td><td>True</td><td>False</td><td>True</td><td>True</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>EXC02.msmwp.xyz</td><td></td><td></td><td></td><td>True</td><td>00:10:00</td><td>00:05:00</td><td>Unlimited</td><td>IPAddress</td><td>5000</td><td>20</td><td>2</td><td>256 KB (262,144 bytes)</td><td>60</td><td>12</td><td>3</td><td>36 MB (37,748,736 bytes)</td><td>5</td><td>200</td><td>ExchangeServers</td><td>True</td><td>Verbose</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPRange]</td><td>False</td><td>False</td><td>False</td><td>None</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmtpReceiveDomainCapabilities]</td><td>EXC02</td><td>FrontendTransport</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Enabled</td><td>00:00:00</td><td>00:00:05</td><td>00:00:30</td><td></td><td>0.1 (8.0.535.0)</td><td>Outbound Proxy Frontend EXC02</td><td>CN=Outbound Proxy Frontend EXC02,CN=SMTP Receive Connectors,CN=Protocols,CN=EXC02,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>EXC02\Outbound Proxy Frontend EXC02</td><td>e0e6bdd0-c003-4758-9133-ffdcaace3ae2</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Smtp-Receive-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/23/2026 1:06:06 PM</td><td>2/23/2026 1:06:06 PM</td><td>2/23/2026 7:06:06 AM</td><td>2/23/2026 7:06:06 AM</td><td></td><td>EXC02\Outbound Proxy Frontend EXC02</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Tls, Integrated, BasicAuth, BasicAuthRequireTLS</td><td></td><td>True</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPBinding]</td><td>True</td><td></td><td>True</td><td>True</td><td>True</td><td>False</td><td>False</td><td>True</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>EXC02.msmwp.xyz</td><td></td><td></td><td></td><td>True</td><td>00:10:00</td><td>00:05:00</td><td>5</td><td>User</td><td>5000</td><td>20</td><td>2</td><td>256 KB (262,144 bytes)</td><td>60</td><td>12</td><td>3</td><td>36 MB (37,748,736 bytes)</td><td>5</td><td>200</td><td>ExchangeUsers</td><td>True</td><td>None</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.IPRange]</td><td>False</td><td>False</td><td>True</td><td>None</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[Microsoft.Exchange.Data.SmtpReceiveDomainCapabilities]</td><td>EXC02</td><td>FrontendTransport</td><td>False</td><td>False</td><td>False</td><td>False</td><td>Enabled</td><td>00:00:05</td><td>00:00:05</td><td>00:00:30</td><td></td><td>0.1 (8.0.535.0)</td><td>Client Frontend EXC02</td><td>CN=Client Frontend EXC02,CN=SMTP Receive Connectors,CN=Protocols,CN=EXC02,CN=Servers,CN=Exchange Administrative Group (FYDIBOHF23SPDLT),CN=Administrative Groups,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>EXC02\Client Frontend EXC02</td><td>9a960d34-0a03-48f2-a2f4-3aadeda9f082</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Smtp-Receive-Connector</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/23/2026 1:06:06 PM</td><td>2/23/2026 1:06:06 PM</td><td>2/23/2026 7:06:06 AM</td><td>2/23/2026 7:06:06 AM</td><td></td><td>EXC02\Client Frontend EXC02</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr></tbody></table></div></div><div class='section'><div class='section-header' onclick="toggle('accepted-domains')"><span>Accepted Domains</span><span></span></div><div class='section-content' id='accepted-domains'><table class='table'><thead><tr><th>PSComputerName</th><th>RunspaceId</th><th>PSShowComputerName</th><th>DomainName</th><th>CatchAllRecipientID</th><th>DomainType</th><th>MatchSubDomains</th><th>AddressBookEnabled</th><th>Default</th><th>EmailOnly</th><th>ExternallyManaged</th><th>AuthenticationType</th><th>LiveIdInstanceType</th><th>PendingRemoval</th><th>PendingCompletion</th><th>FederatedOrganizationLink</th><th>MailFlowPartner</th><th>OutboundOnly</th><th>PendingFederatedAccountNamespace</th><th>PendingFederatedDomain</th><th>IsCoexistenceDomain</th><th>PerimeterDuplicateDetected</th><th>IsDefaultFederatedDomain</th><th>EnableNego2Authentication</th><th>InitialDomain</th><th>AdminDisplayName</th><th>ExchangeVersion</th><th>Name</th><th>DistinguishedName</th><th>Identity</th><th>Guid</th><th>ObjectCategory</th><th>ObjectClass</th><th>WhenChanged</th><th>WhenCreated</th><th>WhenChangedUTC</th><th>WhenCreatedUTC</th><th>OrganizationId</th><th>Id</th><th>OriginatingServer</th><th>IsValid</th><th>ObjectState</th></tr></thead><tbody><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>msmwp.xyz</td><td></td><td>Authoritative</td><td>False</td><td>True</td><td>True</td><td>False</td><td>False</td><td></td><td></td><td>False</td><td>False</td><td></td><td></td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td></td><td>0.20 (15.0.0.0)</td><td>msmwp.xyz</td><td>CN=msmwp.xyz,CN=Accepted Domains,CN=Transport Settings,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>msmwp.xyz</td><td>c00a5d8b-8a2e-48b2-9b4f-aa8217874402</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Accepted-Domain</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:38:36 PM</td><td>2/21/2026 12:38:36 PM</td><td>2/21/2026 6:38:36 AM</td><td>2/21/2026 6:38:36 AM</td><td></td><td>msmwp.xyz</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>xpertit.online</td><td></td><td>Authoritative</td><td>False</td><td>True</td><td>False</td><td>False</td><td>False</td><td></td><td></td><td>False</td><td>False</td><td></td><td></td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td>False</td><td></td><td>0.20 (15.0.0.0)</td><td>xpertit</td><td>CN=xpertit,CN=Accepted Domains,CN=Transport Settings,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>xpertit</td><td>8fbca333-14d4-4bb9-b1ab-bffb1fd05f6a</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Accepted-Domain</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/23/2026 2:42:33 PM</td><td>2/23/2026 2:42:33 PM</td><td>2/23/2026 8:42:33 AM</td><td>2/23/2026 8:42:33 AM</td><td></td><td>xpertit</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr></tbody></table></div></div><div class='section'><div class='section-header' onclick="toggle('email-policies')"><span>Email Address Policies</span><span></span></div><div class='section-content' id='email-policies'><table class='table'><thead><tr><th>PSComputerName</th><th>RunspaceId</th><th>PSShowComputerName</th><th>RecipientFilter</th><th>LdapRecipientFilter</th><th>LastUpdatedRecipientFilter</th><th>RecipientFilterApplied</th><th>IncludedRecipients</th><th>ConditionalDepartment</th><th>ConditionalCompany</th><th>ConditionalStateOrProvince</th><th>ConditionalCustomAttribute1</th><th>ConditionalCustomAttribute2</th><th>ConditionalCustomAttribute3</th><th>ConditionalCustomAttribute4</th><th>ConditionalCustomAttribute5</th><th>ConditionalCustomAttribute6</th><th>ConditionalCustomAttribute7</th><th>ConditionalCustomAttribute8</th><th>ConditionalCustomAttribute9</th><th>ConditionalCustomAttribute10</th><th>ConditionalCustomAttribute11</th><th>ConditionalCustomAttribute12</th><th>ConditionalCustomAttribute13</th><th>ConditionalCustomAttribute14</th><th>ConditionalCustomAttribute15</th><th>RecipientContainer</th><th>RecipientFilterType</th><th>Priority</th><th>EnabledPrimarySMTPAddressTemplate</th><th>EnabledEmailAddressTemplates</th><th>DisabledEmailAddressTemplates</th><th>HasEmailAddressSetting</th><th>HasMailboxManagerSetting</th><th>NonAuthoritativeDomains</th><th>AdminDescription</th><th>ManagedByFilter</th><th>ManagedByLdapFilter</th><th>AdminDisplayName</th><th>ExchangeVersion</th><th>Name</th><th>DistinguishedName</th><th>Identity</th><th>Guid</th><th>ObjectCategory</th><th>ObjectClass</th><th>WhenChanged</th><th>WhenCreated</th><th>WhenChangedUTC</th><th>WhenCreatedUTC</th><th>OrganizationId</th><th>Id</th><th>OriginatingServer</th><th>IsValid</th><th>ObjectState</th></tr></thead><tbody><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>Alias -ne $null</td><td>(mailNickname=*)</td><td></td><td>True</td><td>AllRecipients</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>Precanned</td><td>Lowest</td><td>@msmwp.xyz</td><td>Microsoft.Exchange.Data.ProxyAddressTemplateCollection</td><td>Microsoft.Exchange.Data.ProxyAddressTemplateCollection</td><td>True</td><td>False</td><td>Microsoft.Exchange.Data.ProxyAddressTemplateCollection</td><td></td><td></td><td></td><td></td><td>0.1 (8.0.535.0)</td><td>Default Policy</td><td>CN=Default Policy,CN=Recipient Policies,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>Default Policy</td><td>a112e54b-94b5-43aa-b9c7-d6cb15d76197</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Recipient-Policy</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:38:37 PM</td><td>2/21/2026 12:38:37 PM</td><td>2/21/2026 6:38:37 AM</td><td>2/21/2026 6:38:37 AM</td><td></td><td>Default Policy</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr></tbody></table></div></div><div class='section'><div class='section-header' onclick="toggle('retention-policies')"><span>Retention Policies</span><span></span></div><div class='section-content' id='retention-policies'><table class='table'><thead><tr><th>PSComputerName</th><th>RunspaceId</th><th>PSShowComputerName</th><th>RetentionId</th><th>RetentionPolicyTagLinks</th><th>IsDefault</th><th>IsDefaultArbitrationMailbox</th><th>AdminDisplayName</th><th>ExchangeVersion</th><th>Name</th><th>DistinguishedName</th><th>Identity</th><th>Guid</th><th>ObjectCategory</th><th>ObjectClass</th><th>WhenChanged</th><th>WhenCreated</th><th>WhenChangedUTC</th><th>WhenCreatedUTC</th><th>OrganizationId</th><th>Id</th><th>OriginatingServer</th><th>IsValid</th><th>ObjectState</th></tr></thead><tbody><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>96d4ad0c-bf9c-4d0b-bad3-9efd2643ff19</td><td>Microsoft.Exchange.Data.Directory.ADMultiValuedProperty`1[Microsoft.Exchange.Data.Directory.ADObjectId]</td><td>False</td><td>False</td><td></td><td>1.0 (14.0.100.0)</td><td>Default MRM Policy</td><td>CN=Default MRM Policy,CN=Retention Policies Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>Default MRM Policy</td><td>96d4ad0c-bf9c-4d0b-bad3-9efd2643ff19</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Mailbox-Recipient-Template</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:06 PM</td><td>2/21/2026 12:39:06 PM</td><td>2/21/2026 6:39:06 AM</td><td>2/21/2026 6:39:06 AM</td><td></td><td>Default MRM Policy</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>b35e1868-f709-4b62-a237-7aa0e73946f2</td><td>Microsoft.Exchange.Data.Directory.ADMultiValuedProperty`1[Microsoft.Exchange.Data.Directory.ADObjectId]</td><td>False</td><td>False</td><td></td><td>1.0 (14.0.100.0)</td><td>ArbitrationMailbox</td><td>CN=ArbitrationMailbox,CN=Retention Policies Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>ArbitrationMailbox</td><td>b35e1868-f709-4b62-a237-7aa0e73946f2</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-Mailbox-Recipient-Template</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:06 PM</td><td>2/21/2026 12:39:06 PM</td><td>2/21/2026 6:39:06 AM</td><td>2/21/2026 6:39:06 AM</td><td></td><td>ArbitrationMailbox</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr></tbody></table></div></div><div class='section'><div class='section-header' onclick="toggle('retention-tags')"><span>Retention Tags</span><span></span></div><div class='section-content' id='retention-tags'><table class='table'><thead><tr><th>PSComputerName</th><th>RunspaceId</th><th>PSShowComputerName</th><th>MessageClassDisplayName</th><th>MessageClass</th><th>Description</th><th>RetentionEnabled</th><th>RetentionAction</th><th>AgeLimitForRetention</th><th>MoveToDestinationFolder</th><th>TriggerForRetention</th><th>MessageFormatForJournaling</th><th>JournalingEnabled</th><th>AddressForJournaling</th><th>LabelForJournaling</th><th>Type</th><th>IsDefaultAutoGroupPolicyTag</th><th>IsDefaultModeratedRecipientsPolicyTag</th><th>SystemTag</th><th>LocalizedRetentionPolicyTagName</th><th>Comment</th><th>RetentionId</th><th>LocalizedComment</th><th>MustDisplayCommentEnabled</th><th>LegacyManagedFolder</th><th>AdminDisplayName</th><th>ExchangeVersion</th><th>Name</th><th>DistinguishedName</th><th>Identity</th><th>Guid</th><th>ObjectCategory</th><th>ObjectClass</th><th>WhenChanged</th><th>WhenCreated</th><th>WhenChangedUTC</th><th>WhenCreatedUTC</th><th>OrganizationId</th><th>Id</th><th>OriginatingServer</th><th>IsValid</th><th>ObjectState</th></tr></thead><tbody><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>True</td><td>MoveToArchive</td><td>365.00:00:00</td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>Personal</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>66904d6f-bf73-4460-9abe-8ebfad894a0f</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>Personal 1 year move to archive</td><td>CN=Personal 1 year move to archive,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>Personal 1 year move to archive</td><td>6bed8e63-07d2-41e5-b2ad-8c46cbd06f49</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 6:39:05 AM</td><td>2/21/2026 6:39:05 AM</td><td></td><td>Personal 1 year move to archive</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>True</td><td>MoveToArchive</td><td>730.00:00:00</td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>All</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>9acbb441-faf8-40dd-b967-b3867bdf399c</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>Default 2 year move to archive</td><td>CN=Default 2 year move to archive,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>Default 2 year move to archive</td><td>cd83f37b-8cce-4eae-9cb8-1b1d40de7a63</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 6:39:05 AM</td><td>2/21/2026 6:39:05 AM</td><td></td><td>Default 2 year move to archive</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>True</td><td>MoveToArchive</td><td>1825.00:00:00</td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>Personal</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>790300f2-2ffd-4380-95d8-962daadc05c8</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>Personal 5 year move to archive</td><td>CN=Personal 5 year move to archive,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>Personal 5 year move to archive</td><td>37e65d59-6832-4428-b3e9-76388246a4a6</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 6:39:05 AM</td><td>2/21/2026 6:39:05 AM</td><td></td><td>Personal 5 year move to archive</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>False</td><td>MoveToArchive</td><td></td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>Personal</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>c6c9ad12-9e46-4b29-a053-e1ea189ab0cc</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>Personal never move to archive</td><td>CN=Personal never move to archive,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>Personal never move to archive</td><td>ed460af6-d7ce-40da-a427-62fab4119758</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 6:39:05 AM</td><td>2/21/2026 6:39:05 AM</td><td></td><td>Personal never move to archive</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>True</td><td>DeleteAndAllowRecovery</td><td>7.00:00:00</td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>Personal</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>2d26745c-8566-4dc3-85b7-a88f56443b7b</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>1 Week Delete</td><td>CN=1 Week Delete,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>1 Week Delete</td><td>20317897-4cc8-4bdf-a4fb-04c52b92fa3f</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 6:39:05 AM</td><td>2/21/2026 6:39:05 AM</td><td></td><td>1 Week Delete</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>True</td><td>DeleteAndAllowRecovery</td><td>30.00:00:00</td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>Personal</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>fc92a703-51e3-411f-b850-4966668ee49c</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>1 Month Delete</td><td>CN=1 Month Delete,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>1 Month Delete</td><td>13892751-5bb1-4e26-bfa9-c9a9c2c137e9</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 6:39:05 AM</td><td>2/21/2026 6:39:05 AM</td><td></td><td>1 Month Delete</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>True</td><td>DeleteAndAllowRecovery</td><td>180.00:00:00</td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>Personal</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>d94993b5-e987-4275-8707-072057cfb2b8</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>6 Month Delete</td><td>CN=6 Month Delete,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>6 Month Delete</td><td>060fd39c-dad8-482f-b13b-e042871befd4</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 6:39:05 AM</td><td>2/21/2026 6:39:05 AM</td><td></td><td>6 Month Delete</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>True</td><td>DeleteAndAllowRecovery</td><td>365.00:00:00</td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>Personal</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>9a3c36dd-c0eb-424a-a3ec-fd08bd17f855</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>1 Year Delete</td><td>CN=1 Year Delete,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>1 Year Delete</td><td>9707dc3e-63fb-4d6d-bac9-6b64d7b03fe6</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 12:39:05 PM</td><td>2/21/2026 6:39:05 AM</td><td>2/21/2026 6:39:05 AM</td><td></td><td>1 Year Delete</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>True</td><td>DeleteAndAllowRecovery</td><td>1825.00:00:00</td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>Personal</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>1d128b50-14f2-4417-87a4-dbcb7d015fd7</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>5 Year Delete</td><td>CN=5 Year Delete,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>5 Year Delete</td><td>44058460-956a-4182-a292-9a070bff2918</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:06 PM</td><td>2/21/2026 12:39:06 PM</td><td>2/21/2026 6:39:06 AM</td><td>2/21/2026 6:39:06 AM</td><td></td><td>5 Year Delete</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>False</td><td>DeleteAndAllowRecovery</td><td></td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>Personal</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>414c6a14-3ed5-432e-9edb-c6620a8278f0</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>Never Delete</td><td>CN=Never Delete,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>Never Delete</td><td>6b858437-6a51-4b10-8c99-b31f627de6f7</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:06 PM</td><td>2/21/2026 12:39:06 PM</td><td>2/21/2026 6:39:06 AM</td><td>2/21/2026 6:39:06 AM</td><td></td><td>Never Delete</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr><tr><td>exc01.msmwp.xyz</td><td>cb200cab-15a4-44f3-a0c7-271e5914878a</td><td>False</td><td>All Mailbox Content</td><td>*</td><td>Managed Content Settings</td><td>True</td><td>MoveToArchive</td><td>14.00:00:00</td><td></td><td>WhenDelivered</td><td>UseTnef</td><td>False</td><td></td><td></td><td>RecoverableItems</td><td>False</td><td>False</td><td>False</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td></td><td>80feb2e9-8e6f-4f67-a006-c806ae585982</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>False</td><td></td><td></td><td>1.0 (14.0.100.0)</td><td>Recoverable Items 14 days move to archive</td><td>CN=Recoverable Items 14 days move to archive,CN=Retention Policy Tag Container,CN=MSMWP,CN=Microsoft Exchange,CN=Services,CN=Configuration,DC=msmwp,DC=xyz</td><td>Recoverable Items 14 days move to archive</td><td>02d0f720-2252-421b-8ad5-247b2b5f6191</td><td>msmwp.xyz/Configuration/Schema/ms-Exch-ELC-Folder</td><td>Microsoft.Exchange.Data.MultiValuedProperty`1[System.String]</td><td>2/21/2026 12:39:06 PM</td><td>2/21/2026 12:39:06 PM</td><td>2/21/2026 6:39:06 AM</td><td>2/21/2026 6:39:06 AM</td><td></td><td>Recoverable Items 14 days move to archive</td><td>AD01.msmwp.xyz</td><td>True</td><td>Unchanged</td></tr></tbody></table></div></div></div></body></html>
